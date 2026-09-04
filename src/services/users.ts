@@ -6,6 +6,7 @@ import type { Pagination, PaginationQueryParams } from '../interfaces/api';
 import { Episode } from '../interfaces/episode';
 import { User } from '../interfaces/user';
 import { PlaylistItem } from '../interfaces/playlists';
+import type { Show } from './search';
 
 interface FetchTopItemsParams extends PaginationQueryParams {
   /** @description Over what time frame the affinities are computed. Valid values: long_term (calculated from ~1 year of data and including all new data as it becomes available), medium_term (approximately last 6 months), short_term (approximately last 4 weeks). Default: medium_term */
@@ -33,6 +34,13 @@ const fetchFollowedArtists = async (params: PaginationQueryParams = {}) => {
   return await axios.get<{ artists: Pagination<Artist> }>(`/me/following`, {
     params: { ...params, type: 'artist' },
   });
+};
+
+/**
+ * @description Get shows saved in the current Spotify user's library.
+ */
+const fetchSavedShows = async (params: PaginationQueryParams = {}) => {
+  return await axios.get<Pagination<{ added_at: string; show: Show }>>('/me/shows', { params });
 };
 
 /**
@@ -157,6 +165,7 @@ export const userService = {
   getSavedTracks,
   fetchTopArtists,
   fetchTopTracks,
+  fetchSavedShows,
   checkSavedTracks,
   followPlaylist,
   checkFollowingUsers,

@@ -34,17 +34,6 @@ const getMyPlaylists = async (params: PaginationQueryParams = {}) => {
   return axios.get<Pagination<Playlist>>('/me/playlists', { params });
 };
 
-interface GetFeaturedPlaylistsParams extends PaginationQueryParams {
-  locale?: string;
-}
-
-/**
- * @description Get a list of Spotify featured playlists (shown, for example, on a Spotify player's 'Browse' tab).
- */
-const getFeaturedPlaylists = async (params: GetFeaturedPlaylistsParams = {}) => {
-  return axios.get<{ playlists: Pagination<Playlist> }>('/browse/featured-playlists');
-};
-
 /**
  * @description Add one or more items to a user's playlist.
  */
@@ -165,7 +154,6 @@ export const playlistService = {
   getRecommendations,
   changePlaylistImage,
   removePlaylistItems,
-  getFeaturedPlaylists,
   reorderPlaylistItems,
   changePlaylistDetails,
 };

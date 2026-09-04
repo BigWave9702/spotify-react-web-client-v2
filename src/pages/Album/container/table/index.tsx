@@ -34,7 +34,6 @@ export const AlbumList: FC<PlaylistListProps> = memo(({ color }) => {
     <div
       className='playlist-list'
       style={{
-        maxHeight: 323,
         background: `linear-gradient(${color} -50%, ${DEFAULT_PAGE_COLOR} 90%)`,
       }}
     >

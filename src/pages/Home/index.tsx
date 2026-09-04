@@ -20,8 +20,13 @@ const Home: FC<HomeProps> = (props) => {
   useEffect(() => {
     dispatch(homeActions.fetchTopTracks());
     dispatch(homeActions.fetchMadeForYou());
+    dispatch(homeActions.fetchRecommendedForToday());
     dispatch(homeActions.fetchNewReleases());
+    dispatch(homeActions.fetchPodcasts());
     dispatch(homeActions.fetchRecentlyPlayed());
+    dispatch(homeActions.fetchFollowedShows());
+    dispatch(homeActions.fetchFollowedArtists());
+    dispatch(homeActions.fetchFollowedArtistReleases());
     dispatch(homeActions.fecthFeaturedPlaylists());
   }, [dispatch]);
 

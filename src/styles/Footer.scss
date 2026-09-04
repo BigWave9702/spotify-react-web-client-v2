@@ -1,0 +1,138 @@
+@use './variables.scss' as *;
+
+.app-footer {
+  border-top: 1px solid #292929;
+  color: $text-secondary-color;
+  margin: 56px 30px 0;
+  padding: 80px 0 48px;
+
+  a {
+    color: $text-secondary-color;
+    text-decoration: none;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: $text-primary-color;
+      text-decoration: underline;
+    }
+  }
+}
+
+.app-footer__top {
+  display: flex;
+  justify-content: space-between;
+  gap: 48px;
+  padding-bottom: 56px;
+}
+
+.app-footer__columns {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(130px, 1fr));
+  gap: 48px;
+  width: min(760px, 100%);
+}
+
+.app-footer__column {
+  h2 {
+    color: $text-primary-color;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: 1.35;
+    margin: 0 0 12px;
+  }
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  a {
+    display: inline-block;
+    font-size: 0.98rem;
+    font-weight: 600;
+    line-height: 1.35;
+  }
+}
+
+.app-footer__socials {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 16px;
+
+  a {
+    align-items: center;
+    background: #292929;
+    border-radius: 50%;
+    color: $text-primary-color;
+    display: inline-flex;
+    font-size: 1.25rem;
+    height: 48px;
+    justify-content: center;
+    width: 48px;
+
+    &:hover {
+      background: #3a3a3a;
+      text-decoration: none;
+    }
+  }
+}
+
+.app-footer__bottom {
+  align-items: center;
+  border-top: 1px solid #292929;
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  padding-top: 40px;
+
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px 24px;
+  }
+
+  a,
+  span {
+    font-size: 0.9rem;
+    font-weight: 600;
+    line-height: 1.35;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 1120px) {
+  .app-footer__top {
+    flex-direction: column;
+  }
+
+  .app-footer__columns {
+    grid-template-columns: repeat(2, minmax(160px, 1fr));
+  }
+}
+
+@media (max-width: $desktop-breakpoint) {
+  .app-footer {
+    margin: 40px 16px 0;
+    padding: 40px 0 96px;
+  }
+
+  .app-footer__columns {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .app-footer__bottom {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .app-footer__bottom a,
+  .app-footer__bottom span {
+    white-space: normal;
+  }
+}

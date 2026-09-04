@@ -9,6 +9,7 @@ import { getFromLocalStorageWithExpiry } from './utils/localstorage';
 // Components
 import { ConfigProvider } from 'antd';
 import { AppLayout } from './components/Layout';
+import { AppFooter } from './components/Layout/components/Footer';
 import { Spinner } from './components/spinner/spinner';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 
@@ -199,26 +200,29 @@ const RootComponent = () => {
       <Router>
         <AppLayout>
           <div className='Main-section' ref={container}>
-            <div style={{ minHeight: 'calc(100vh - 230px)', width: '100%' }}>
-              <Routes>
-                {routes.map((route) => (
-                  <Route
-                    key={route.path}
-                    path={route.path}
-                    element={<Suspense>{route.element}</Suspense>}
-                  >
-                    {route?.children
-                      ? route.children.map((child) => (
-                          <Route
-                            key={child.path}
-                            path={child.path}
-                            element={<Suspense>{child.element}</Suspense>}
-                          />
-                        ))
-                      : undefined}
-                  </Route>
-                ))}
-              </Routes>
+            <div className='main-content-shell'>
+              <div className='main-route-content'>
+                <Routes>
+                  {routes.map((route) => (
+                    <Route
+                      key={route.path}
+                      path={route.path}
+                      element={<Suspense>{route.element}</Suspense>}
+                    >
+                      {route?.children
+                        ? route.children.map((child) => (
+                            <Route
+                              key={child.path}
+                              path={child.path}
+                              element={<Suspense>{child.element}</Suspense>}
+                            />
+                          ))
+                        : undefined}
+                    </Route>
+                  ))}
+                </Routes>
+              </div>
+              <AppFooter />
             </div>
           </div>
         </AppLayout>

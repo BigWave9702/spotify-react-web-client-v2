@@ -2,19 +2,20 @@ import { FC, memo, ReactNode } from 'react';
 
 interface ChipProps {
   active?: boolean;
+  className?: string;
   onClick?: () => void;
   text: string | ReactNode;
 }
 
 export const Chip: FC<ChipProps> = memo((props) => {
-  const { text, active, onClick } = props;
+  const { text, active, className, onClick } = props;
 
   return (
     <button
       onClick={onClick}
-      className={`chip ${active ? 'active' : ''}`}
+      className={`chip ${active ? 'active' : ''} ${className ?? ''}`}
       role='checkbox'
-      aria-checked='false'
+      aria-checked={active}
       data-encore-id='chip'
       style={{
         marginBlockEnd: '0px',

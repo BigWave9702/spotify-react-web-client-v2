@@ -6,9 +6,6 @@ import { useTranslation } from 'react-i18next';
 import { useAppSelector } from '../../../../store/store';
 import { getPlaylistDescription } from '../../../../utils/getDescription';
 
-// Components
-import { MADE_FOR_YOU_URI } from '../../../../constants/spotify';
-
 // Interfaces
 import { useMemo, type FC } from 'react';
 
@@ -21,9 +18,10 @@ export const MadeForYou: FC<NewReleasesProps> = () => {
   const madeForYou = useAppSelector((state) => state.home.madeForYou);
 
   const items = useMemo(() => {
-    const items = madeForYou.filter((p) => !p.name.toLowerCase().includes('mix'));
-    const otherItems = madeForYou.filter((p) => p.name.toLowerCase().includes('mix')).reverse();
-    return [...items, ...otherItems].slice(0, 12);
+    const validItems = madeForYou.filter((p) => p?.id && p?.name);
+    const nonMixItems = validItems.filter((p) => !p.name.toLowerCase().includes('mix'));
+    const mixItems = validItems.filter((p) => p.name.toLowerCase().includes('mix')).reverse();
+    return [...nonMixItems, ...mixItems].slice(0, 12);
   }, [madeForYou]);
 
   if (!items || !items.length) return null;
@@ -32,7 +30,6 @@ export const MadeForYou: FC<NewReleasesProps> = () => {
     <div className='home'>
       <GridItemList
         items={items}
-        moreUrl={`/genre/${MADE_FOR_YOU_URI}`}
         getDescription={getPlaylistDescription}
         title={`${t('Made for')} ${user?.display_name}`}
       />

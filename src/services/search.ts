@@ -5,6 +5,28 @@ import type { Album } from '../interfaces/albums';
 import type { Artist } from '../interfaces/artist';
 import type { Pagination } from '../interfaces/api';
 import type { Playlist } from '../interfaces/playlists';
+import type { Episode } from '../interfaces/episode';
+
+export interface Show {
+  description: string;
+  explicit: boolean;
+  external_urls: {
+    spotify: string;
+  };
+  href: string;
+  id: string;
+  images: {
+    url: string;
+    height: number;
+    width: number;
+  }[];
+  media_type: string;
+  name: string;
+  publisher: string;
+  total_episodes: number;
+  type: 'show';
+  uri: string;
+}
 
 /**
  * @description Get Spotify catalog information about albums, artists, playlists, tracks, shows, episodes or audiobooks that match a keyword string. Audiobooks are only available within the US, UK, Canada, Ireland, New Zealand and Australia markets.
@@ -36,4 +58,6 @@ export const querySearch = (params: {
     tracks: Pagination<Track>;
     artists: Pagination<Artist>;
     playlists: Pagination<Playlist>;
+    episodes?: Pagination<Episode>;
+    shows?: Pagination<Show>;
   }>(`/search`, { params });

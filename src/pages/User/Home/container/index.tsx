@@ -36,7 +36,6 @@ export const ProfileContainer: FC<ProfilePageProps> = (props) => {
 
       <div
         style={{
-          maxHeight: 323,
           padding: '20px 15px',
           background: `linear-gradient(${color} -50%, ${DEFAULT_PAGE_COLOR} 90%)`,
         }}

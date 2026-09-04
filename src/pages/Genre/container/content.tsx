@@ -14,7 +14,6 @@ export const GenreContent = memo((props: { color: string }) => {
       style={{
         padding: 20,
         paddingTop: 30,
-        maxHeight: 260,
         background: `linear-gradient(${
           tinycolor(props.color).isLight()
             ? tinycolor(props.color).darken(20)

@@ -27,7 +27,7 @@ const fetchArtistAlbums = (
     /** @description The index of the first album to return. */
     offset?: number;
     /** @description A comma-separated list of keywords that will be used to filter the response. */
-    include_groups?: 'album' | 'single' | 'appears_on' | 'compilation';
+    include_groups?: 'album' | 'single' | 'appears_on' | 'compilation' | string;
     /** @description The country for which the release date will be formatted. */
     market?: string;
   } = {}

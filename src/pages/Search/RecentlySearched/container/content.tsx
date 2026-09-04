@@ -15,7 +15,6 @@ import { Link } from 'react-router-dom';
 const CONTAINER_STYLES = {
   padding: 20,
   paddingTop: 30,
-  maxHeight: 260,
 } as const;
 
 export const RecentlySearchedContent = memo((props: { color: string }) => {

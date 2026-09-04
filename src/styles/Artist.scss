@@ -293,7 +293,7 @@ body {
 
 .artist-page-content {
   --background-base: $background-color;
-  height: 150px;
+  min-height: 150px;
   width: 100%;
   background-image: linear-gradient(var(--background-base) 0, $background-color 100%),
     var(--background-noise);

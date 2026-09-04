@@ -66,7 +66,7 @@ export interface Episode {
   };
 
   /** @description The object type: “episode”. */
-  type: '“episode”';
+  type: 'episode';
 
   /** @description The Spotify URI for the episode. */
   uri: string;
