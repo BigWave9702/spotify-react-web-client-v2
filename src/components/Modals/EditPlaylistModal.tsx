@@ -92,7 +92,9 @@ export const EditPlaylistModal = memo(() => {
           onFinish={async (values) => {
             try {
               setLoading(true);
-              const promises = [playlistService.changePlaylistDetails(playlist!.id, values)];
+              const promises: Promise<unknown>[] = [
+                playlistService.changePlaylistDetails(playlist!.id, values),
+              ];
               if (file) {
                 const base64File = await toBase64(file);
                 const contentType = file.type;

@@ -2,8 +2,8 @@ import axios from 'axios';
 import { getFromLocalStorageWithExpiry, setLocalStorageWithExpiry } from '../localstorage';
 
 /* eslint-disable import/no-anonymous-default-export */
-const client_id = process.env.REACT_APP_CLIENT_ID as string;
-const redirect_uri = process.env.REACT_APP_REDIRECT_ID as string;
+const client_id = import.meta.env.VITE_CLIENT_ID as string;
+const redirect_uri = import.meta.env.VITE_REDIRECT_ID as string;
 
 const authUrl = new URL('https://accounts.spotify.com/authorize');
 
