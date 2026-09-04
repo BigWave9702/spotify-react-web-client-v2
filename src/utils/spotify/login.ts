@@ -2,8 +2,11 @@ import axios from 'axios';
 import { getFromLocalStorageWithExpiry, setLocalStorageWithExpiry } from '../localstorage';
 
 /* eslint-disable import/no-anonymous-default-export */
-const client_id = import.meta.env.VITE_CLIENT_ID as string;
-const redirect_uri = import.meta.env.VITE_REDIRECT_ID as string;
+const client_id = import.meta.env.VITE_CLIENT_ID ?? import.meta.env.REACT_APP_CLIENT_ID;
+const redirect_uri =
+  import.meta.env.VITE_REDIRECT_ID ??
+  import.meta.env.REACT_APP_REDIRECT_ID ??
+  `${window.location.origin}/`;
 
 const authUrl = new URL('https://accounts.spotify.com/authorize');
 
@@ -50,6 +53,10 @@ const generateRandomString = (length: number) => {
 };
 
 const logInWithSpotify = async () => {
+  if (!client_id) {
+    throw new Error('Missing Spotify client ID. Set VITE_CLIENT_ID in your deployment environment.');
+  }
+
   let codeVerifier = localStorage.getItem('code_verifier');
 
   if (!codeVerifier) {
@@ -74,6 +81,10 @@ const logInWithSpotify = async () => {
 };
 
 const requestToken = async (code: string) => {
+  if (!client_id) {
+    throw new Error('Missing Spotify client ID. Set VITE_CLIENT_ID in your deployment environment.');
+  }
+
   const code_verifier = localStorage.getItem('code_verifier') as string;
 
   const body = {
@@ -114,6 +125,10 @@ const getToken = async () => {
 };
 
 export const getRefreshToken = async () => {
+  if (!client_id) {
+    throw new Error('Missing Spotify client ID. Set VITE_CLIENT_ID in your deployment environment.');
+  }
+
   // refresh token that has been previously stored
   const refreshToken = localStorage.getItem('refresh_token') as string;
 
